@@ -1,0 +1,24 @@
+---
+- name: construir server web
+  hosts: fhw
+  become: yes
+  tasks:
+    - name: Instalar apache
+      apt: 
+        name: apache2 
+        state: present
+    - name: Arrancar el servicio Apache
+      service: 
+        name: apache2 
+        state: restarted
+      notify: codigo html
+    - name: Comando echo
+      command: echo {{ message }}
+  
+  handlers:
+    - name: codigo html
+      copy: 
+        src: ../ansible.html
+        dest: /var/www/html/
+        owner: www-data
+        group: www-data
