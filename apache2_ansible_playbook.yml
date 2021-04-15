@@ -1,6 +1,6 @@
 ---
 - name: construir server web
-  hosts: all
+  hosts: fhw
   become: yes
   tasks:
     - name: Instalar apache
